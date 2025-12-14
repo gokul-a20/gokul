@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Ledger {
+    char name[30];
+    float debit;
+    float credit;
+};
+
+int main() {
+    struct Ledger l;
+    float balance;
+
+    printf("Enter Ledger Name: ");
+    fgets(l.name, sizeof(l.name), stdin);
+
+    printf("Enter Debit Amount: ");
+    scanf("%f", &l.debit);
+
+    printf("Enter Credit Amount: ");
+    scanf("%f", &l.credit);
+
+    balance = l.debit - l.credit;
+
+    printf("\n--- Ledger Summary ---\n");
+    printf("Ledger: %s", l.name);
+    printf("Debit: %.2f\n", l.debit);
+    printf("Credit: %.2f\n", l.credit);
+
+    if (balance > 0)
+        printf("Closing Balance: %.2f (Dr)\n", balance);
+    else if (balance < 0)
+        printf("Closing Balance: %.2f (Cr)\n", -balance);
+    else
+        printf("Closing Balance: 0.00\n");
+
+    return 0;
+}
